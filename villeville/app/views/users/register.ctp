@@ -10,7 +10,7 @@
      App::import('Vendor', 'facebook');
 
      $app_id = "181767878519813";
-     $canvas_page = "http://apps.facebook.com/villeville/users/register_new";     
+     $canvas_page = "http://apps.facebook.com/villeville/users/register";
 
      $auth_url = "http://www.facebook.com/dialog/oauth?client_id=" 
             . $app_id . "&redirect_uri=" . $canvas_page;
@@ -23,8 +23,11 @@
 
      if (empty($data["user_id"])) {
             echo("<script> top.location.href='" . $auth_url . "'</script>");
-     } else {
-            echo("<script> top.location.href='" . $canvas_page . "'</script>");
+	    exit(0);
      }
 ?>
 
+<form action="http://www.jayantkrish.com/villeville/users/register" method="post">
+<input type="hidden" name="facebook_id" value="<? echo $data["user_id"]; ?>" />
+<input type="submit" name="submit" value="register" />
+</form>
